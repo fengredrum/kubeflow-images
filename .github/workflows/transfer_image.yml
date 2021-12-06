@@ -35,6 +35,38 @@ jobs:
           file: ingress/Dockerfile
           push: true
           tags: oblivion208/ingress:latest
+          
+      - name: Build and push image for filter
+        id: push_filter
+        uses: docker/build-push-action@v2
+        with:
+          file: filter/Dockerfile
+          push: true
+          tags: oblivion208/filter:latest
+          
+      - name: Build and push image for adapter
+        id: push_adapter
+        uses: docker/build-push-action@v2
+        with:
+          file: adapter/Dockerfile
+          push: true
+          tags: oblivion208/adapter:latest
+          
+      - name: Build and push image for jobrunner
+        id: push_jobrunner
+        uses: docker/build-push-action@v2
+        with:
+          file: jobrunner/Dockerfile
+          push: true
+          tags: oblivion208/jobrunner:latest
+          
+      - name: Build and push image for apiserver_receive_adapter
+        id: push_apiserver_receive_adapter
+        uses: docker/build-push-action@v2
+        with:
+          file: apiserver_receive_adapter/Dockerfile
+          push: true
+          tags: oblivion208/apiserver_receive_adapter:latest
 
       - name: Image digest
         run: echo ${{ steps.push_ingress.outputs.digest }}
