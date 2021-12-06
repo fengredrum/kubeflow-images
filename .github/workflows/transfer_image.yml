@@ -29,13 +29,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push image for ingress
-        id: build_arm_pytorch_160
+        id: push_ingress
         uses: docker/build-push-action@v2
         with:
-          file: ./Dockerfile
-          platforms: linux/arm64
+          file: ingress/Dockerfile
           push: true
-          tags: oblivion208/pytorch-aarch64:1.6.0-py36
+          tags: oblivion208/ingress:latest
 
       - name: Image digest
-        run: echo ${{ steps.build_arm_pytorch_160.outputs.digest }}
+        run: echo ${{ steps.push_ingress.outputs.digest }}
